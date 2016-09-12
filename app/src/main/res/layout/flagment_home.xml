@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ru.noties.scrollable.ScrollableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:scrollable_autoMaxScrollViewId="@+id/convenientBanner_showGoods"
+    >
+
+    <com.bigkoo.convenientbanner.ConvenientBanner
+        android:id="@+id/convenientBanner_showGoods"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        />
+
+    <com.qf.widget.TabView
+        android:id="@+id/tabview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/news_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v4.view.ViewPager>
+
+
+</ru.noties.scrollable.ScrollableLayout>

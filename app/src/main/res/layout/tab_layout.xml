@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#fff"
+              android:alpha="0.95"
+              android:orientation="vertical">
+
+    <!-- 分割线 -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#b2b2b3"
+        />
+
+    <!-- 底部Tab导航 -->
+    <RadioGroup
+        android:id="@+id/rg_tab"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <!-- 首页按钮 -->
+        <RadioButton
+            android:id="@+id/rb_home"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/selector_home"
+            android:gravity="center_horizontal"
+            android:paddingTop="15dp"
+
+            />
+
+        <!-- 发现按钮 -->
+        <RadioButton
+            android:id="@+id/rb_discover"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/selector_community"
+            android:gravity="center"
+            android:paddingTop="15dp"
+
+
+            />
+
+
+        <!-- 文章（publish）按钮 -->
+        <RadioButton
+            android:id="@+id/rb_publish"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/selector_publish"
+            android:gravity="center_horizontal"
+            android:paddingTop="15dp"
+            />
+
+
+        <!--  消息按钮 -->
+        <RadioButton
+            android:id="@+id/rb_msg"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/selector_msg"
+            android:gravity="center_horizontal"
+            android:paddingTop="15dp"
+            />
+
+        <!-- 个人按钮 -->
+        <RadioButton
+            android:id="@+id/rb_personal"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/selector_personal"
+            android:gravity="center_horizontal"
+            android:paddingTop="15dp"
+            />
+
+    </RadioGroup>
+
+</LinearLayout>
