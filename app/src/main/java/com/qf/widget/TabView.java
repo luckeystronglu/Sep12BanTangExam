@@ -21,11 +21,13 @@ import java.util.List;
  * ViewPager搭配的Tab控件
  * Created by Ken on 2016/7/28.
  */
-public class TabView extends HorizontalScrollView {
+public class TabView extends HorizontalScrollView implements View.OnClickListener {
 
     //滑动小光标
     private View view;
     private LinearLayout.LayoutParams layoutParams;
+
+    private ViewPager viewPager;
 
     //tab选项卡的线性布局
     private LinearLayout tabLinearLayout;
@@ -65,11 +67,13 @@ public class TabView extends HorizontalScrollView {
         this.tabs = tabs;
 
         lengthList = new ArrayList<>();
-        for (HomeHeadEntity.DataBean.CategoryElementBean tab : tabs) {
+        for (int i = 0; i < tabs.size(); i++) {
             TextView tv = new TextView(getContext());
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            tv.setText(tab.getTitle());
+            tv.setText(tabs.get(i).getTitle());
             tv.setTextSize(14);
+            tv.setTag(i);
+            tv.setOnClickListener(this);
             tv.setPadding(30, 10, 30, 10);
             tv.setLayoutParams(layoutParams);
 
@@ -78,6 +82,27 @@ public class TabView extends HorizontalScrollView {
             lengthList.add(tv.getMeasuredWidth());
             tabLinearLayout.addView(tv);
         }
+        for (HomeHeadEntity.DataBean.CategoryElementBean tab : tabs) {
+
+        }
+
+
+
+
+//        for (HomeHeadEntity.DataBean.CategoryElementBean tab : tabs) {
+//            TextView tv = new TextView(getContext());
+//            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//            tv.setText(tab.getTitle());
+//            tv.setTextSize(14);
+//
+//            tv.setPadding(30, 10, 30, 10);
+//            tv.setLayoutParams(layoutParams);
+//
+//            //测量控件
+//            tv.measure(0, 0);
+//            lengthList.add(tv.getMeasuredWidth());
+//            tabLinearLayout.addView(tv);
+//        }
 
         //把小光标的宽度设置为第一个TextView的宽度
         view.getLayoutParams().width = lengthList.get(0);
@@ -88,46 +113,57 @@ public class TabView extends HorizontalScrollView {
      * 设置需要联动的ViewPager对象
      * @param viewPager
      */
-    public void setViewPager(ViewPager viewPager){
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                //计算光标需要走的距离
-                int length = 0;
-                for(int i = 0; i < position; i++){
-                    length += lengthList.get(i);
-                }
+    public void setViewPager(ViewPager viewPager) {
+        if (viewPager != null) {
+            this.viewPager = viewPager;
+            viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                @Override
+                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                    //计算光标需要走的距离
+                    int length = 0;
+                    for (int i = 0; i < position; i++) {
+                        length += lengthList.get(i);
+                    }
 
-                layoutParams.leftMargin = (int) (length + lengthList.get(position) * positionOffset);
+                    layoutParams.leftMargin = (int) (length + lengthList.get(position) * positionOffset);
 
 
-                //光标的宽度
-                if(position != lengthList.size() - 1) {
-                    layoutParams.width = (int) (lengthList.get(position) + (lengthList.get(position + 1) - lengthList.get(position)) * positionOffset);
-                } else {
-                    layoutParams.width = lengthList.get(position);
-                }
-                view.setLayoutParams(layoutParams);
-
-                TabView.this.smoothScrollTo(layoutParams.leftMargin - 80, 0);//这个带动画
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                for (int i = 0; i < tabLinearLayout.getChildCount(); i++) {
-                    TextView tv = (TextView) tabLinearLayout.getChildAt(i);
-                    if (position != i) {
-                        tv.setTextColor(Color.BLACK);
+                    //光标的宽度
+                    if (position != lengthList.size() - 1) {
+                        layoutParams.width = (int) (lengthList.get(position) + (lengthList.get(position + 1) - lengthList.get(position)) * positionOffset);
                     } else {
-                        tv.setTextColor(Color.BLUE);
+                        layoutParams.width = lengthList.get(position);
+                    }
+                    view.setLayoutParams(layoutParams);
+
+                    TabView.this.smoothScrollTo(layoutParams.leftMargin - 80, 0);//这个带动画
+                }
+
+                @Override
+                public void onPageSelected(int position) {
+                    for (int i = 0; i < tabLinearLayout.getChildCount(); i++) {
+                        TextView tv = (TextView) tabLinearLayout.getChildAt(i);
+                        if (position != i) {
+                            tv.setTextColor(Color.BLACK);
+                        } else {
+                            tv.setTextColor(Color.BLUE);
+                        }
                     }
                 }
-            }
 
-            @Override
-            public void onPageScrollStateChanged(int state) {
+                @Override
+                public void onPageScrollStateChanged(int state) {
 
-            }
-        });
+                }
+            });
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        int index = (int) v.getTag();
+        if(viewPager != null){
+            viewPager.setCurrentItem(index);
+        }
     }
 }

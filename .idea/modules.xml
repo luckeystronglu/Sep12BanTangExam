@@ -3,8 +3,12 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Sep12BanTangExam.iml" filepath="$PROJECT_DIR$/Sep12BanTangExam.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Sep12BanTangExam.iml" filepath="$PROJECT_DIR$/Sep12BanTangExam.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/hwlibary/hwlibary.iml" filepath="$PROJECT_DIR$/hwlibary/hwlibary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hwlibary/hwlibary.iml" filepath="$PROJECT_DIR$/hwlibary/hwlibary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/scrollable/scrollable.iml" filepath="$PROJECT_DIR$/scrollable/scrollable.iml" />
       <module fileurl="file://$PROJECT_DIR$/scrollable/scrollable.iml" filepath="$PROJECT_DIR$/scrollable/scrollable.iml" />
     </modules>
   </component>
